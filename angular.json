@@ -15,6 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
+          "showCircularDependencies": false,
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/gen-ai",
@@ -27,22 +28,28 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/css-loader/dist/cjs.js",
+              "./node_modules/postcss-loader/dist/cjs.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 }
               ],
               "fileReplacements": [
@@ -63,6 +70,7 @@
             }
           },
           "defaultConfiguration": "production"
+          
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
